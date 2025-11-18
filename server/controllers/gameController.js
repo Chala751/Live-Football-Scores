@@ -11,3 +11,10 @@ export const createGame = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Get all games
+export const getGames = async (req, res) => {
+  const games = await Game.find().sort({ createdAt: -1 });
+  res.json(games);
+};
+
