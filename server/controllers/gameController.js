@@ -18,3 +18,8 @@ export const getGames = async (req, res) => {
   res.json(games);
 };
 
+// Get single game
+export const getGame = async (req, res) => {
+  const game = await Game.findById(req.params.id);
+  res.json(game);
+};
