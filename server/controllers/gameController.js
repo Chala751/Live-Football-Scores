@@ -41,3 +41,16 @@ export const updateScore = async (req, res) => {
 
   res.json(game);
 };
+
+// End match
+export const finishGame = async (req, res) => {
+  const game = await Game.findByIdAndUpdate(
+    req.params.id,
+    { status: "finished" },
+    { new: true }
+  );
+
+  broadcast("gameFinished", game);
+
+  res.json(game);
+};
