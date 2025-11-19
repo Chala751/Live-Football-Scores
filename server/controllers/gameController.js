@@ -23,3 +23,21 @@ export const getGame = async (req, res) => {
   const game = await Game.findById(req.params.id);
   res.json(game);
 };
+
+// Update score
+export const updateScore = async (req, res) => {
+  const { home, away } = req.body;
+
+  const game = await Game.findByIdAndUpdate(
+    req.params.id,
+    {
+      score: { home, away },
+      status: "live",
+    },
+    { new: true }
+  );
+
+  broadcast("scoreUpdate", game);
+
+  res.json(game);
+};
