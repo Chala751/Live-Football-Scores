@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createGame } from "../api/api";
+import { createGame } from "../services/api";
 
 export default function CreateGame() {
   const [homeTeam, setHomeTeam] = useState("");

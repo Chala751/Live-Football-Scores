@@ -13,21 +13,23 @@ export default function LiveGame() {
     const stream = connectSSE((event) => {
       if (event.type === "noLiveGames") return;
 
-      // update only if event belongs to this game
       if (event._id === id) {
         setGame(event);
       }
     });
 
     return () => closeSSE();
-  }, []);
+  }, [id]);
 
   if (!game) return <p>Loading...</p>;
 
   return (
     <div style={{ padding: 20 }}>
       <h1>{game.homeTeam} vs {game.awayTeam}</h1>
-      <h2>{game.homeScore} - {game.awayScore}</h2>
+
+      <h2>
+        {game.score?.home ?? 0} - {game.score?.away ?? 0}
+      </h2>
 
       <p>Status: {game.status}</p>
     </div>
