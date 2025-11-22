@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchGame } from "../services/api";
 import { connectSSE, closeSSE } from "../sse/sse";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export default function LiveGame() {
   const { id } = useParams();
@@ -27,11 +27,25 @@ export default function LiveGame() {
     <div style={{ padding: 20 }}>
       <h1>{game.homeTeam} vs {game.awayTeam}</h1>
 
-      <h2>
-        {game.score?.home ?? 0} - {game.score?.away ?? 0}
-      </h2>
+      <h2>{game.score.home} - {game.score.away}</h2>
 
-      <p>Status: {game.status}</p>
+      <p>Status: <b>{game.status}</b></p>
+
+      <br />
+
+      {/* 👍 ADMIN BUTTONS ONLY HERE */}
+      <div style={{ marginTop: 20 }}>
+        <Link to={`/game/${game._id}/update`}>
+          <button style={{ marginRight: 10 }}>Update Score</button>
+        </Link>
+
+        <Link to={`/game/${game._id}/finish`}>
+          <button>Finish Game</button>
+        </Link>
+      </div>
+
+      <br />
+      <Link to="/">← Back</Link>
     </div>
   );
 }
