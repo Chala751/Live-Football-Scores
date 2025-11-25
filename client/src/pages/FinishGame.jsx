@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchGame, finishGame } from "../services/api";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 export default function FinishGame() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [game, setGame] = useState(null);
 
   useEffect(() => {
@@ -13,6 +14,7 @@ export default function FinishGame() {
   async function handleFinish() {
     await finishGame(id);
     alert("Game marked as finished!");
+    navigate("/");   
   }
 
   if (!game) return <p>Loading...</p>;
@@ -27,6 +29,9 @@ export default function FinishGame() {
       <button onClick={handleFinish}>
         Mark as Finished
       </button>
+
+      <br /><br /><br />
+      <Link to="/">← Back to Home</Link> 
     </div>
   );
 }
