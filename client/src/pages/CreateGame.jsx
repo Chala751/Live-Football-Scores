@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createGame } from "../services/api";
+import { Link } from "react-router-dom"; 
 
 export default function CreateGame() {
   const [homeTeam, setHomeTeam] = useState("");
@@ -32,6 +33,9 @@ export default function CreateGame() {
 
         <button type="submit">Create</button>
       </form>
+
+      <br />
+      <Link to="/">← Back to Home</Link> 
     </div>
   );
 }
