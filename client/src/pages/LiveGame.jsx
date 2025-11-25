@@ -10,7 +10,7 @@ export default function LiveGame() {
   useEffect(() => {
     fetchGame(id).then(setGame);
 
-    const stream = connectSSE((event) => {
+    const _stream = connectSSE((event) => {
       if (event.type === "noLiveGames") return;
 
       if (event._id === id) {
@@ -33,7 +33,7 @@ export default function LiveGame() {
 
       <br />
 
-      {/* 👍 ADMIN BUTTONS ONLY HERE */}
+      
       <div style={{ marginTop: 20 }}>
         <Link to={`/game/${game._id}/update`}>
           <button style={{ marginRight: 10 }}>Update Score</button>
