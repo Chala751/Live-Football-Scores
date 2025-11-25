@@ -16,7 +16,7 @@ export const sseHandler = async (req, res) => {
   clients.add(client);
   console.log("Client connected. Total:", clients.size);
 
-  // 🔥 10-second timeout check
+ 
   const timeoutCheck = setTimeout(async () => {
     const liveGames = await Game.countDocuments({ status: "live" });
 
@@ -27,12 +27,12 @@ export const sseHandler = async (req, res) => {
         `event: noLiveGames\ndata: ${JSON.stringify({ message: "No live games" })}\n\n`
       );
 
-      res.end(); // close SSE
+      res.end(); 
       clients.delete(client);
     }
-  }, 10000); // 10 seconds
+  }, 10000);
 
-  // Heartbeat every 20s
+ 
   const interval = setInterval(() => {
     res.write(": heartbeat\n\n");
   }, 20000);

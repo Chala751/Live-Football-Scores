@@ -1,7 +1,7 @@
 import Game from "../models/Game.js";
 import { broadcast } from "../sse/sseManager.js";
 
-// Create new match
+
 export const createGame = async (req, res) => {
   try {
     const game = await Game.create(req.body);
@@ -12,19 +12,19 @@ export const createGame = async (req, res) => {
   }
 };
 
-// Get all games
+
 export const getGames = async (req, res) => {
   const games = await Game.find().sort({ createdAt: -1 });
   res.json(games);
 };
 
-// Get single game
+
 export const getGame = async (req, res) => {
   const game = await Game.findById(req.params.id);
   res.json(game);
 };
 
-// Update score
+
 export const updateScore = async (req, res) => {
   const { home, away } = req.body;
 
@@ -42,7 +42,7 @@ export const updateScore = async (req, res) => {
   res.json(game);
 };
 
-// End match
+
 export const finishGame = async (req, res) => {
   const game = await Game.findByIdAndUpdate(
     req.params.id,
